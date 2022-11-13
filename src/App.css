@@ -1,0 +1,26 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+@media (max-width: 1400px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+/* Tablet screen  */
+
+@media (max-width: 768px) {
+  html {
+    font-size: 18px;
+  }
+}
+
+/* // Mobile screen  */
+
+@media (max-width: 450px) {
+  html {
+    font-size: 12px;
+  }
+}

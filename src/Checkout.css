@@ -1,0 +1,29 @@
+.checkout {
+  display: flex;
+  justify-content: space-between;
+  padding: 1vh 1vw;
+  max-width: 100vw;
+}
+
+.checkout_title {
+  border-bottom: 0.08rem solid lightgray;
+  padding: 0.5rem 0;
+  font-size: 1.8rem;
+  font-weight: 400;
+}
+
+.checkout_left {
+  background-color: white;
+  margin: 2vh 1vw;
+  padding: 2vh 2vw;
+  width: 80rem;
+  height: max-content;
+}
+
+.checkout_right {
+  background-color: white;
+  margin: 2vh 1vw;
+  padding: 2vh 2vw;
+  width: 20rem;
+  height: max-content;
+}
