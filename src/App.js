@@ -34,6 +34,15 @@ function App() {
       }
     });
   }, []);
+
+  useEffect(() => {
+    const cartItems = JSON.parse(window.localStorage.getItem("cart"));
+    console.log(cartItems, "cartItems");
+    dispatch({
+      type: "INITIALIZE_CART",
+      item: cartItems,
+    });
+  }, []);
   return (
     <Router>
       <div className="App">

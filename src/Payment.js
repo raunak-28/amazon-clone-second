@@ -9,9 +9,10 @@ import CurrencyFormat from "react-currency-format";
 import { getCartTotal } from "./reducer";
 import { useNavigate } from "react-router-dom";
 import { db } from "./firebase";
+import Address from "./Address";
 
 function Payment() {
-  const [{ cart, user }, dispatch] = useStateValue();
+  const [{ cart, user, addresses }, dispatch] = useStateValue();
   const [disabled, setDisabled] = useState(true);
   const [error, setError] = useState(null);
   const [succeeded, setSucceeded] = useState(false);
@@ -80,9 +81,7 @@ function Payment() {
             <h3>Delivery Address</h3>
           </div>
           <div className="payment_address">
-            <p>{user?.email}</p>
-            <p>Dowdsworth Layout</p>
-            <p>New york</p>
+            <Address />
           </div>
         </div>
         <div className="payment_section">

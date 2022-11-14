@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./CheckoutProduct.css";
 import { useStateValue } from "./StateProvider";
 
 function CheckoutProduct({ id, image, title, price, rating, hide = false }) {
   const [{ cart }, dispatch] = useStateValue();
+
+  useEffect(() => {
+    window.localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
+
+  console.log(cart, "cart");
 
   const removeFromCart = () => {
     dispatch({

@@ -1,0 +1,40 @@
+.addresses {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.address {
+  margin-right: 20px;
+  margin-bottom: 20px;
+
+  /* height: 100%; */
+}
+.address-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: max-content;
+  padding: 1rem;
+  white-space: pre-wrap;
+}
+.address-text {
+  width: 15rem;
+  margin-right: 1rem;
+}
+
+.new-address {
+  width: 30em;
+  margin-right: 1em;
+  margin-bottom: 1em;
+}
+
+label.ant-radio-button-wrapper {
+  display: block;
+  height: calc(100% - 2.5em);
+  padding: 0px;
+}
+
+.delete-address-btn {
+  margin-left: 1rem;
+  cursor: pointer;
+}

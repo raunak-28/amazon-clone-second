@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Product.css";
 import { useStateValue } from "./StateProvider";
 function Product({ id, title, image, price, rating }) {
@@ -16,6 +16,10 @@ function Product({ id, title, image, price, rating }) {
       },
     });
   };
+
+  useEffect(() => {
+    window.localStorage.setItem("cart", JSON.stringify(state.cart));
+  }, [state.cart]);
 
   return (
     <div className="product">

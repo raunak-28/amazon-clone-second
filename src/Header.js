@@ -1,33 +1,63 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Header.css";
+import axios from "axios";
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
 import { Link, useNavigate } from "react-router-dom";
 import { useStateValue } from "./StateProvider";
 import { auth } from "./firebase";
+
 function Header() {
+  const [searchString, setSearchString] = useState("");
   const navigate = useNavigate();
   const [state, dispatch] = useStateValue();
-  console.log(state, "raunak");
+
+  const handleSearch = async (searchStr) => {
+    const products = await axios.get(
+      `https://dummyjson.com/products/search?q=${
+        searchStr ? searchStr : searchString
+      }`
+    );
+    dispatch({
+      type: "SET_PRODUCT_LIST",
+      item: products.data.products,
+    });
+    console.log(products.data.products, "searchString");
+  };
+
   const handleAuthentication = () => {
     if (state.user) {
       auth.signOut();
     }
   };
+
+  const handleLogoClick = (e) => {
+    setSearchString("");
+    navigate("/");
+  };
+
+  useEffect(() => {
+    const searchProducts = setTimeout(() => {
+      handleSearch();
+    }, 800);
+    return () => clearTimeout(searchProducts);
+  }, [searchString]);
+
   return (
     <div className="header">
-      {/* <Link to="/"> */}
       <img
-        onClick={(e) => navigate("/")}
+        onClick={(e) => handleLogoClick(e)}
         className="header_logo"
         src="http://pngimg.com/uploads/amazon/amazon_PNG11.png"
       />
-      {/* </Link> */}
       <div className="header_search">
-        <input className="header_searchInput" type="text" />
-        {/* <div className="search_icon"> */}
-        <SearchIcon className="header_searchIcon" />
-        {/* </div> */}
+        <input
+          className="header_searchInput"
+          placeholder="Search for products"
+          type="text"
+          onChange={(e) => setSearchString(e.target.value)}
+          value={searchString}
+        />
       </div>
       <div className="header_nav">
         <Link onClick={handleAuthentication} to={!state.user && "/login"}>
